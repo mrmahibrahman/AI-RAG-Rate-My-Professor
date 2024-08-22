@@ -1,0 +1,125 @@
+{
+    "reviews": [
+      {
+        "professor": "Dr. Sarah Johnson",
+        "subject": "Introduction to Psychology",
+        "stars": 5,
+        "review": "Dr. Johnson is an amazing professor! Her lectures are clear, engaging, and she always encourages class participation."
+      },
+      {
+        "professor": "Prof. Michael Smith",
+        "subject": "Advanced Calculus",
+        "stars": 4,
+        "review": "The content is challenging, but Prof. Smith explains complex topics in a simple way. However, the exams are tough."
+      },
+      {
+        "professor": "Dr. Emily Davis",
+        "subject": "Organic Chemistry",
+        "stars": 3,
+        "review": "Dr. Davis is knowledgeable, but her lectures can be hard to follow. Be prepared to study a lot on your own."
+      },
+      {
+        "professor": "Prof. Robert Brown",
+        "subject": "World History",
+        "stars": 2,
+        "review": "Prof. Brown has a lot of knowledge, but his lectures are very monotonous. It’s easy to lose focus."
+      },
+      {
+        "professor": "Dr. Laura Wilson",
+        "subject": "Sociology 101",
+        "stars": 5,
+        "review": "Dr. Wilson is fantastic! She is approachable and makes sociology very interesting with real-world examples."
+      },
+      {
+        "professor": "Prof. James Miller",
+        "subject": "Physics II",
+        "stars": 4,
+        "review": "Prof. Miller is good at explaining concepts, but the pace of the class is fast. Pay close attention to the problem sets."
+      },
+      {
+        "professor": "Dr. Amanda Taylor",
+        "subject": "Literary Analysis",
+        "stars": 5,
+        "review": "Dr. Taylor is a great professor. She encourages deep thinking and class discussions are very insightful."
+      },
+      {
+        "professor": "Prof. William Moore",
+        "subject": "Economics 101",
+        "stars": 3,
+        "review": "Prof. Moore is decent, but his lectures can be a bit dry. The exams are fair, but you need to keep up with the readings."
+      },
+      {
+        "professor": "Dr. Jennifer Clark",
+        "subject": "Genetics",
+        "stars": 4,
+        "review": "Dr. Clark is very knowledgeable and passionate about genetics. Her exams are challenging but fair."
+      },
+      {
+        "professor": "Prof. Christopher Lewis",
+        "subject": "Political Science",
+        "stars": 2,
+        "review": "Prof. Lewis is hard to follow, and his grading criteria are unclear. The lectures are not very engaging."
+      },
+      {
+        "professor": "Dr. Jessica Walker",
+        "subject": "Microbiology",
+        "stars": 5,
+        "review": "Dr. Walker is an excellent professor. She makes complex topics easy to understand and is always available for help."
+      },
+      {
+        "professor": "Prof. David Young",
+        "subject": "Statistics",
+        "stars": 4,
+        "review": "Prof. Young is great at explaining statistics, but the homework can be overwhelming. Attend office hours if you need help."
+      },
+      {
+        "professor": "Dr. Patricia Harris",
+        "subject": "Ethics",
+        "stars": 5,
+        "review": "Dr. Harris is an outstanding professor. She encourages critical thinking and class debates are very engaging."
+      },
+      {
+        "professor": "Prof. Matthew White",
+        "subject": "Computer Science 101",
+        "stars": 3,
+        "review": "Prof. White is knowledgeable, but his lectures can be disorganized. The assignments are helpful for understanding the material."
+      },
+      {
+        "professor": "Dr. Barbara Green",
+        "subject": "Human Anatomy",
+        "stars": 4,
+        "review": "Dr. Green is very thorough in her teaching. The labs are difficult but rewarding. Study consistently."
+      },
+      {
+        "professor": "Prof. Richard Hall",
+        "subject": "Macroeconomics",
+        "stars": 2,
+        "review": "Prof. Hall’s lectures are hard to follow, and his exams are tricky. Be prepared to do a lot of self-study."
+      },
+      {
+        "professor": "Dr. Linda King",
+        "subject": "Biochemistry",
+        "stars": 5,
+        "review": "Dr. King is a fantastic professor. Her lectures are clear, and she is always willing to help outside of class."
+      },
+      {
+        "professor": "Prof. Thomas Wright",
+        "subject": "Philosophy 101",
+        "stars": 4,
+        "review": "Prof. Wright is engaging and makes philosophy interesting. However, his grading is strict."
+      },
+      {
+        "professor": "Dr. Karen Scott",
+        "subject": "Environmental Science",
+        "stars": 3,
+        "review": "Dr. Scott is knowledgeable, but her lectures can be dry. The course content is interesting but requires a lot of memorization."
+      },
+      {
+        "professor": "Prof. Charles Adams",
+        "subject": "Introduction to Sociology",
+        "stars": 2,
+        "review": "Prof. Adams knows his material, but his lectures are very dull. The exams are tough and require a lot of reading."
+      }
+    ]
+  }
+  
