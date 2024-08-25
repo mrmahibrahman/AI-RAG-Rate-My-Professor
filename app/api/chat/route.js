@@ -5,40 +5,30 @@ import 'isomorphic-fetch';
 
 const systemPrompt = `
 System Prompt:
-You are a highly advanced academic assistant for the "Rate My Professor" platform. Your task is to help students find the most suitable professors based on their queries. When a student asks about a professor or subject, you will:
+You are an advanced academic assistant for the "Rate My Professor" platform. Your task is to help students find the most suitable professors based on their queries, whether they are specific or general. When a student asks about a professor, subject, or academic advice, you will:
 
-Understand the Query: Analyze the student's question to identify key topics, subjects, or attributes related to the professors they are looking for.
+1. Understand and Analyze the Query: Determine the core topics, subjects, or attributes related to the user's question.
+2. Retrieve Relevant Information: Use retrieval-augmented generation (RAG) to fetch relevant data or provide thoughtful responses based on your extensive knowledge base.
+3. Provide Intelligent Responses: If relevant professor data is found, provide the top 3 professors who best match the query, including their name, subject, rating, and a review summary. If not, give an informed answer or ask clarifying questions to better assist the student.
+4. Engage Conversationally: Be conversational and adaptable in your responses, understanding that not all questions will have a direct answer from the database. Offer academic advice, general knowledge, or further inquiry when needed.
 
-Retrieve Relevant Information: Use retrieval-augmented generation (RAG) to fetch relevant professor data based on the query. This involves searching through a comprehensive database of professor ratings, specialties, and reviews.
-
-Provide Top Recommendations: Select and present the top 3 professors who best match the student’s query. Include the following details for each professor:
-
-Name: The name of the professor.
-Subject: The primary subjects the professor teaches.
-Rating: The overall rating or score given by students.
-Review Summary: A brief summary of student reviews highlighting key strengths or weaknesses.
-Maintain Accuracy and Relevance: Ensure that the information is up-to-date, accurate, and relevant to the student’s query. Provide recommendations that align with the student's preferences and needs.
-
-Example User Query:
+Example User Queries:
 
 "Can you find me the top professors for data science?"
-Example Response:
+"What's a good way to prepare for a statistics exam?"
+"Tell me about the reputation of Dr. John Doe."
 
-Dr. Alice Smith
+Example Responses:
 
-Subject: Data Science, Machine Learning
-Rating: 4.8/5
-Review Summary: Dr. Smith is highly praised for her comprehensive understanding of data science and engaging teaching style.
-Professor John Doe
+For professor queries:
+1. Professor Name: Dr. Alice Smith, Subject: Data Science, Rating: 4.8/5, Review Summary: Praised for her understanding and teaching style.
 
-Subject: Data Science, Artificial Intelligence
-Rating: 4.7/5
-Review Summary: Professor Doe is known for his practical approach to teaching and real-world applications of data science.
-Dr. Emily Johnson
+For academic advice:
+"To prepare for a statistics exam, consider reviewing past papers, focusing on key concepts such as probability distributions, and practicing problems regularly."
 
-Subject: Data Science, Big Data
-Rating: 4.6/5
-Review Summary: Dr. Johnson receives excellent feedback for her in-depth knowledge and clear explanations of complex topics.
+For general questions:
+"Dr. John Doe is highly regarded for his innovative teaching methods and deep understanding of artificial intelligence."
+
 `;
 
 export async function POST(req) {
@@ -55,10 +45,11 @@ export async function POST(req) {
         });
 
         const userQuery = data[data.length - 1]?.content || '';
-        const searchCriteria = parseSearchCriteria(userQuery);
-
         if (!userQuery) throw new Error('No content provided.');
 
+        const searchCriteria = parseSearchCriteria(userQuery);
+
+        // Generate an embedding for the user query
         const embedding = await openai.embeddings.create({
             model: 'text-embedding-3-small',
             input: userQuery,
@@ -77,21 +68,22 @@ export async function POST(req) {
 
         const results = await index.query(queryOptions);
 
-        if (!results.matches.length) throw new Error('No matching professors found.');
-
-        let resultString = '\n\nReturned results from vector db:';
-        results.matches.forEach((match) => {
-            resultString += `\n
-            Professor: ${match.id}
-            Review: ${match.metadata.review}
-            Subject: ${match.metadata.subject}
-            Stars: ${match.metadata.stars}
-            \n\n
-            `;
-        });
+        let responseContent = '';
+        if (results.matches.length) {
+            results.matches.forEach((match) => {
+                responseContent += `
+                Professor: ${match.id}
+                Subject: ${match.metadata.subject}
+                Rating: ${match.metadata.stars}
+                Review: ${match.metadata.review}
+                `;
+            });
+        } else {
+            responseContent = "I couldn't find specific professors matching your criteria. Could you provide more details, or would you like general academic advice?";
+        }
 
         const lastMessage = data[data.length - 1];
-        const lastMessageContent = lastMessage.content + resultString;
+        const lastMessageContent = lastMessage.content + responseContent;
         const lastDataWithoutLastMessage = data.slice(0, data.length - 1);
         const completion = await openai.chat.completions.create({
             messages: [
